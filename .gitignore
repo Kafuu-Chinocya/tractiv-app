@@ -1,0 +1,10 @@
+logs
+*.log
+.env
+.env.test
+.cache
+package-lock.json
+dist/
+node_modules/
+.hbuilderx/
+unpackage/
