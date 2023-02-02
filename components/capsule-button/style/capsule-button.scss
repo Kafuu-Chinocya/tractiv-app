@@ -1,0 +1,16 @@
+.capsule-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: to-rpx(178);
+  height: to-rpx(50);
+  padding: to-rpx(18) 0;
+  border-radius: to-rpx(178);
+  font-size: var(--button-label);
+  font-weight: 400;
+
+  &[plain] {
+    border: 1px solid var(--color-sage);
+    color: var(--color-snow);
+  }
+}

@@ -10,12 +10,42 @@
         </text>
       </view>
     </view>
-    <view class="login-page__bottom"> </view>
+    <view class="login-page__bottom">
+      {{ user.token }}
+      <SiwtchTab
+        class="login-page__tab"
+        :tabs="tabs"
+        v-model:index="tabIndex"
+        text-active-color="var(--color-snow)"
+        text-inactive-color="#516a7b"
+        active-background-color="transparent"
+        inactive-background-color="transparent"
+      />
+      <component class="login-page__bottom--view" :is="computedComponent" />
+    </view>
   </view>
 </template>
 
 <script lang="ts" setup>
+import { ref, shallowRef, computed } from 'vue'
+
+import useUser from '@/stores/user'
+
+import SiwtchTab from '@/components/switch-tab'
+import SignUp from './components/sign-up.vue'
+import LogIn from './components/log-in.vue'
+
 import Logo from '@/static/logo/logo-stacked-color.png'
+
+const user = useUser()
+
+const tabs = shallowRef(['Sign Up', 'Log In'])
+const tabIndex = ref(0)
+const tabComponents = [{ component: SignUp }, { component: LogIn }] as const
+
+const computedComponent = computed(
+  () => tabComponents[tabIndex.value].component
+)
 </script>
 
 <style lang="scss" scoped>
@@ -51,8 +81,18 @@ import Logo from '@/static/logo/logo-stacked-color.png'
   }
 
   &__bottom {
+    display: flex;
+    flex-direction: column;
     height: to-rpx(264);
-    background-color: red;
+
+    &--view {
+      flex: 1;
+    }
+  }
+
+  &__tab {
+    flex-shrink: none;
+    box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.1);
   }
 }
 </style>

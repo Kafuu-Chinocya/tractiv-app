@@ -1,0 +1,27 @@
+.switch-tab {
+  --switch-tab-inactive-background-color: #e4e7e8;
+  --switch-tab-active-background-color: var(--color-snow);
+  --switch-tab-inactive-text-color: #b1b1b1;
+  --switch-tab-active-text-color: #334856;
+
+  display: flex;
+
+  &__item {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: to-rpx(50.5);
+    font-size: tp-rpx(16);
+    font-weight: 700;
+    color: var(--switch-tab-inactive-text-color);
+    border-bottom: 2px solid transparent;
+    background-color: var(--switch-tab-inactive-background-color);
+
+    &--active {
+      color: var(--switch-tab-active-text-color);
+      border-color: var(--color-rust);
+      background-color: var(--switch-tab-active-background-color);
+    }
+  }
+}
