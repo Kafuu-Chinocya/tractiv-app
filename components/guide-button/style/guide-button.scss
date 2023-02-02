@@ -1,0 +1,22 @@
+.guide-button {
+  display: flex;
+  width: 100%;
+  height: to-rpx(70);
+  padding: 0;
+  border-radius: none;
+
+  &__text {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: to-rpx(85);
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+}
