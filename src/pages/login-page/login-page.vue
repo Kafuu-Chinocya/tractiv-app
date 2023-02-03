@@ -40,7 +40,7 @@ import Logo from '@/static/logo/logo-stacked-color.png'
 const user = useUser()
 
 const tabs = shallowRef(['Sign Up', 'Log In'])
-const tabIndex = ref(0)
+const tabIndex = ref(1)
 const tabComponents = [{ component: SignUp }, { component: LogIn }] as const
 
 const computedComponent = computed(

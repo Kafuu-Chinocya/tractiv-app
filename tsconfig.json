@@ -1,4 +1,5 @@
 {
+  "extends": "@vue/tsconfig/tsconfig.json",
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
@@ -16,17 +17,12 @@
     "useDefineForClassFields": true,
     "sourceMap": false,
     "baseUrl": ".",
-    "types": ["@dcloudio/types"],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./src/*"]
     },
-    "lib": ["esnext", "dom"]
+    "lib": ["esnext", "dom"],
+    "types": ["@dcloudio/types"]
   },
-  "include": [
-    "types/**/*.ts",
-    "pages/**/*.ts",
-    "pages/**/*.tsx",
-    "pages/**/*.vue"
-  ],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
   "exclude": ["node_modules", "unpackage", "src/**/*.nvue"]
 }

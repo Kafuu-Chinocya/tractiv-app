@@ -1,6 +1,6 @@
 export const SECRET_KEY = '12345'
 
 export const STORAGE_KEY = {
-  TOKEN: 'TOKEN',
+  USERINFO: 'USERINFO',
   IS_FIRST_USE: 'IS_FIRST_USE'
 } as const
