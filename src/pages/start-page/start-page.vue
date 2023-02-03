@@ -1,5 +1,5 @@
 <template>
-  <view class="start-page">
+  <view v-if="!user.userInfo" class="start-page">
     <view class="start-page__header">
       <image class="start-page__logo" :src="Logo"></image>
     </view>
@@ -7,7 +7,7 @@
       <text class="primary-heading">Track Your</text>
       <text class="primary-heading">Active Lifestyle</text>
       <view class="start-page__content--split"></view>
-      <text class="start-page__primary-text">With goal a driven approach</text>
+      <text class="sub-title">With goal a driven approach</text>
     </view>
 
     <GuideButton
@@ -22,14 +22,13 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { onLoad } from '@dcloudio/uni-app'
+import useUser from '@/stores/user'
 
 import GuideButton from '@/components/guide-button'
 
-import Logo from '@/static/logo/logo-stacked-white.png'
+import Logo from '@/static/logo/logo_stacked_white.png'
 
-const title = ref('Hello')
+const user = useUser()
 
 function buttonClickHandler() {
   uni.navigateTo({

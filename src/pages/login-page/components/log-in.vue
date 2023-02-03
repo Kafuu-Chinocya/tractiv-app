@@ -1,10 +1,5 @@
 <template>
-  <uni-forms
-    ref="formInstance"
-    class="log-in"
-    v-model="formData"
-    :rules="rules"
-  >
+  <uni-forms ref="formInstance" class="log-in" :model="formData" :rules="rules">
     <uni-forms-item name="username">
       <uni-easyinput
         class="log-in__input"
@@ -82,7 +77,7 @@ async function submit() {
   if (!formInstance.value) return
 
   try {
-    const result = await formInstance.value!.validate()
+    const result = await formInstance.value.validate()
 
     if (!result) {
       return openDialog(false)
@@ -102,10 +97,13 @@ async function submit() {
     })
     openDialog(true, 'Login successfully')
 
-    const isFirstUse = { user }
-    // user.setIsFirstUse(false)
-    uni.redirectTo({
-      url: isFirstUse ? '/pages/app-tutorial-page/app-tutorial-page' : ''
+    const { isFirstUse } = user
+
+    user.setIsFirstUse(false)
+    uni.reLaunch({
+      url: isFirstUse
+        ? '/pages/app-tutorial-page/app-tutorial-page'
+        : '/pages/home/home'
     })
   } catch (err) {
     openDialog(false)

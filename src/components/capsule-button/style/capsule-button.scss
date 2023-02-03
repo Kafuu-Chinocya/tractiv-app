@@ -8,9 +8,11 @@
   border-radius: to-rpx(178);
   font-size: var(--button-label);
   font-weight: 400;
+  box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.2);
 
   &[plain] {
     border: 1px solid var(--color-sage);
     color: var(--color-snow);
+    box-shadow: none;
   }
 }

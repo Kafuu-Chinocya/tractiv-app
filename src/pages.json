@@ -17,6 +17,12 @@
       "style": {
         "transparentTitle": "always"
       }
+    },
+    {
+      "path": "pages/home/home",
+      "style": {
+        "transparentTitle": "always"
+      }
     }
   ],
   "globalStyle": {

@@ -5,13 +5,10 @@
       <view class="login-page__content">
         <text class="primary-heading">Create a New Account</text>
         <view class="login-page__content--split"></view>
-        <text class="start-page__primary-text">
-          For the best experience with Tractiv
-        </text>
+        <text class="sub-title"> For the best experience with Tractiv </text>
       </view>
     </view>
     <view class="login-page__bottom">
-      {{ user.token }}
       <SiwtchTab
         class="login-page__tab"
         :tabs="tabs"
@@ -29,18 +26,14 @@
 <script lang="ts" setup>
 import { ref, shallowRef, computed } from 'vue'
 
-import useUser from '@/stores/user'
-
 import SiwtchTab from '@/components/switch-tab'
 import SignUp from './components/sign-up.vue'
 import LogIn from './components/log-in.vue'
 
-import Logo from '@/static/logo/logo-stacked-color.png'
-
-const user = useUser()
+import Logo from '@/static/logo/logo_stacked_color.png'
 
 const tabs = shallowRef(['Sign Up', 'Log In'])
-const tabIndex = ref(1)
+const tabIndex = ref(0)
 const tabComponents = [{ component: SignUp }, { component: LogIn }] as const
 
 const computedComponent = computed(

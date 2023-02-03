@@ -1,0 +1,15 @@
+.bar-nav {
+  padding-top: var(--status-bar-height);
+  background-color: red;
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: to-rpx(68);
+  }
+
+  &__icon {
+    font-size: to-rpx(20);
+  }
+}

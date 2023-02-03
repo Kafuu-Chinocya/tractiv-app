@@ -12,7 +12,6 @@ import { capsuleButtonProps } from './interface'
 import '../style/capsule-button.scss'
 
 const props = defineProps(capsuleButtonProps())
-const emit = defineEmits(['tabtap', 'update:index'])
 
 const buttonClass = computed(() => [
   'capsule-button',

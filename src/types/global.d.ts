@@ -14,4 +14,9 @@ declare global {
   }
 
   type ApiPromise<T = any> = Promise<ApiResponse<T>>
+
+  interface UniEvent {
+    detail: anyObj
+    [key: string]: any
+  }
 }
