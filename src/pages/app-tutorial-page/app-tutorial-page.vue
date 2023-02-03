@@ -153,6 +153,8 @@ function done() {
     }
 
     &--title {
+      display: inline-flex;
+      flex-direction: column;
       color: var(--color-snow);
     }
 

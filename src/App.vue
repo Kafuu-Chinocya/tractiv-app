@@ -22,7 +22,7 @@ function interruptRouterMethod(args: { url: string }) {
   const { url } = args
 
   if (user.userInfo && url === loginPage) {
-    uni.reLaunch({
+    uni.redirectTo({
       url: homePage
     })
 

@@ -3,7 +3,7 @@
   width: 100%;
   height: to-rpx(70);
   padding: 0;
-  border-radius: none;
+  border-radius: 0;
 
   &__text {
     flex: 1;
@@ -18,5 +18,9 @@
     align-items: center;
     width: to-rpx(85);
     background-color: rgba(0, 0, 0, 0.2);
+  }
+
+  &:after {
+    border: none;
   }
 }

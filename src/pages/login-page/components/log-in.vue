@@ -90,21 +90,23 @@ async function submit() {
       )
     }
 
-    user.setUserInfo({
+    const { isFirstUse } = user
+
+    openDialog(true, 'Login successfully')
+    await user.setUserInfo({
       token: 'testToken',
       id: 'testId',
       username: 'test account'
     })
-    openDialog(true, 'Login successfully')
+    await user.setIsFirstUse(false)
 
-    const { isFirstUse } = user
-
-    user.setIsFirstUse(false)
-    uni.reLaunch({
-      url: isFirstUse
-        ? '/pages/app-tutorial-page/app-tutorial-page'
-        : '/pages/home/home'
-    })
+    setTimeout(() => {
+      uni.reLaunch({
+        url: isFirstUse
+          ? '/pages/app-tutorial-page/app-tutorial-page'
+          : '/pages/home/home'
+      })
+    }, popupProps.duration)
   } catch (err) {
     openDialog(false)
   }
