@@ -8,13 +8,13 @@
     align-items: center;
     height: to-rpx(66);
     padding: 0 to-rpx(25);
+    color: var(--color-drab);
   }
 
   &__icon {
     position: relative;
     z-index: 0;
     font-size: to-rpx(24);
-    color: var(--color-drab);
     border-radius: 50%;
 
     &::after {
@@ -41,7 +41,6 @@
 
   .icon-24gl-drawer {
     font-weight: 700;
-    font-size: to-rpx(18);
   }
 
   &__logo {

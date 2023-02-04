@@ -5,6 +5,11 @@
     @change="drawerChangeHandler"
   >
     <view class="menu-expand__wrapper">
+      <text
+        @click="close"
+        class="menu-expand__close-btn iconfont icon-guanbi"
+      ></text>
+
       <view class="menu-expand__menu">
         <text
           class="menu-expand__menu--item"
@@ -65,6 +70,10 @@ const currentUrl = computed(() => {
 
 function drawerChangeHandler(val: boolean) {
   visible.value = val
+}
+
+function close() {
+  visible.value = false
 }
 
 function itemClickHandler(url: string) {

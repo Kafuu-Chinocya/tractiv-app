@@ -6,19 +6,29 @@
   &__wrapper {
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: space-between;
     height: 100%;
     box-shadow: 0 3px 100vh inset rgba(0, 0, 0, 0.35);
   }
 
+  &__close-btn {
+    padding: calc(var(--status-bar-height) + to-rpx(20)) 0 0 to-rpx(30);
+    font-size: to-rpx(22);
+    font-weight: 700;
+    transition: color 0.2s;
+
+    &:active {
+      color: var(--color-rust);
+    }
+  }
+
   &__menu {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: center;
     gap: to-rpx(60);
     width: 100%;
-    margin-top: to-rpx(178);
     text-align: center;
 
     &--item {
@@ -35,6 +45,7 @@
   }
 
   &__logo {
+    align-self: center;
     width: to-rpx(113.9);
     height: to-rpx(30.78);
     margin-bottom: to-rpx(48);

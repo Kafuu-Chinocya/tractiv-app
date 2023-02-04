@@ -10,6 +10,8 @@
       active-background-color="transparent"
       inactive-background-color="#E4E7E8"
     />
+    <HomeContent />
+    <TabBar />
   </view>
 </template>
 
@@ -18,6 +20,8 @@ import { ref, shallowRef, computed } from 'vue'
 
 import SiwtchTab from '@/components/switch-tab'
 import BarNav from '@/widgets/bar-nav'
+import TabBar from '@/widgets/tab-bar'
+import HomeContent from './components/home-content'
 
 const tabs = ['You', 'Friends']
 const tabIndex = ref(1)
