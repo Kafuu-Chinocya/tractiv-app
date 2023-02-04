@@ -44,10 +44,22 @@ export default defineStore('user', () => {
     })
   }
 
+  function removeIsFirstUseState() {
+    uni.removeStorageSync(STORAGE_KEY.IS_FIRST_USE)
+    isFirstUse.value = true
+  }
+
+  function removeUserInfo() {
+    uni.removeStorageSync(STORAGE_KEY.USERINFO)
+    userInfo.value = null
+  }
+
   return {
     userInfo,
     isFirstUse,
     setUserInfo,
-    setIsFirstUse
+    setIsFirstUse,
+    removeIsFirstUseState,
+    removeUserInfo
   }
 })

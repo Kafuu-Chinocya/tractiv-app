@@ -90,7 +90,7 @@ function next() {
 
 function done() {
   uni.reLaunch({
-    url: '/pages/home/home'
+    url: '/pages/main/main'
   })
 }
 </script>

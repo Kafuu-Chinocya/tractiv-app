@@ -12,7 +12,7 @@ const routerMethods = [
 ]
 const user = useUser()
 const loginPage = '/pages/login-page/login-page'
-const homePage = '/pages/home/home'
+const homePage = '/pages/main/main'
 const whiteList = [
   '/pages/start-page/start-page',
   '/pages/login-page/login-page'

@@ -19,7 +19,7 @@
       }
     },
     {
-      "path": "pages/home/home",
+      "path": "pages/main/main",
       "style": {
         "transparentTitle": "always"
       }

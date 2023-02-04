@@ -1,9 +1,6 @@
 import type { PropType } from 'vue'
 
-export const menuExpandProps = () => ({
-  visible: {
-    type: Boolean as PropType<boolean>
-  },
+export const tabBarProps = () => ({
   currentPageName: {
     type: String as PropType<string>
   }

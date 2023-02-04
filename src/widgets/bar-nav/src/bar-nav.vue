@@ -16,26 +16,41 @@
       </uni-badge>
     </view>
 
-    <MenuExpand v-model="visible" />
+    <MenuExpand
+      v-model:visible="visible"
+      v-model:current-page-name="currentPageName"
+      @open-new-page="openNewPageHandler"
+    />
   </view>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue'
 
+import { barNavProps } from '@/widgets/bar-nav/src/interface'
+
 import MenuExpand from '@/widgets/menu-expand'
+import useProxyVModel from '@/hooks/useProxyVModel'
 
 import Logo from '@/static/logo/logo_header_wide.png'
 
 import '../style/bar-nav.scss'
+
+const props = defineProps(barNavProps())
+const emit = defineEmits(['open-new-page'])
 
 const badgeStyle = {
   borderWidth: '2px',
   backgroundColor: 'var(--color-sage)'
 }
 const visible = ref(false)
+const currentPageName = useProxyVModel('currentPageName')
 
 function openDrawer() {
   visible.value = true
+}
+
+function openNewPageHandler(pageName: string) {
+  emit('open-new-page', pageName)
 }
 </script>

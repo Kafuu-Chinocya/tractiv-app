@@ -104,7 +104,7 @@ async function submit() {
       uni.reLaunch({
         url: isFirstUse
           ? '/pages/app-tutorial-page/app-tutorial-page'
-          : '/pages/home/home'
+          : '/pages/main/main'
       })
     }, popupProps.duration)
   } catch (err) {

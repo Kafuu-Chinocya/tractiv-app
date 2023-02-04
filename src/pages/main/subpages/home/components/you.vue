@@ -1,5 +1,5 @@
 <template>
-  <scroll-view scroll-y></scroll-view>
+  <view>You</view>
 </template>
 
 <script lang="ts" setup></script>
