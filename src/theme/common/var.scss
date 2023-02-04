@@ -1,14 +1,18 @@
+@use '../function/to-relative-size' as *;
+
 :root {
-  --primary-heading: 60rpx;
-  --secondary-heading: 48rpx;
-  --section-header: 36rpx;
-  --sub-title: 36rpx;
-  --card-title: 30rpx;
-  --card-copy-small: 30rpx;
-  --body-copy-small: 28rpx;
-  --message-time-stamp: 24rpx;
-  --button-label: 28rpx;
-  --card-subtitle: 20rpx;
+  --primary-heading: 60 rpx;
+  --secondary-heading: 48 rpx;
+  --section-header: 36 rpx;
+  --sub-title: 36 rpx;
+  --card-title: 30 rpx;
+  --card-copy-small: 30 rpx;
+  --body-copy-small: 28 rpx;
+  --message-time-stamp: 24 rpx;
+  --button-label: 28 rpx;
+  --card-subtitle: 20 rpx;
+
+  --tab-bar-height: #{to-rpx(70)};
 
   --color-sage: #87bcbf;
   --color-rust: #d97d54;

@@ -72,6 +72,9 @@ watch(
 
   &__content {
     flex: 1;
+    //padding-bottom: var(--tab-bar-height);
+    overflow: hidden;
+    box-sizing: border-box;
   }
 }
 </style>

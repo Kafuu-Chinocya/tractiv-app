@@ -10,9 +10,7 @@
       inactive-background-color="#E4E7E8"
     />
 
-    <scroll-view class="home__content" scroll-y>
-      <component :is="computedComponent.component" />
-    </scroll-view>
+    <component class="home__content" :is="computedComponent.component" />
   </view>
 </template>
 
@@ -39,6 +37,7 @@ const computedComponent = computed(() => ({
 
   &__content {
     flex: 1;
+    overflow: hidden;
     background-color: var(--color-ice);
   }
 }

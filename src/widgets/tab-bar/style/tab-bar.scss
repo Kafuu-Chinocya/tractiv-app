@@ -2,9 +2,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: to-rpx(70);
+  height: var(--tab-bar-height);
   padding: 0 to-rpx(30);
   background-color: var(--color-snow);
+  box-sizing: border-box;
 
   &__icon-wrapper {
     display: inline-flex;
