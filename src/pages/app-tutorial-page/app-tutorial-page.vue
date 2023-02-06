@@ -34,6 +34,7 @@
           <image
             :class="['app-tutorial-page__image', item.imageClass]"
             :src="item.image"
+            mode="aspectFit"
           />
         </view>
       </swiper-item>
@@ -42,7 +43,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, getCurrentInstance } from 'vue'
 
 import CapsuleButton from '@/components/capsule-button'
 
@@ -59,15 +60,15 @@ const itemList = reactive([
     imageClass: 'app-tutorial-page__image1'
   },
   {
-    title: ['Add Your', 'Favorite Activities'],
-    subtitle: 'To Your Personalized Profile',
+    title: ['Easily Track', 'Any Activity'],
+    subtitle: 'Log & record your activities',
     backgroundColor: 'var(--color-rust)',
     image: Image2,
     imageClass: 'app-tutorial-page__image2'
   },
   {
-    title: ['Add Your', 'Favorite Activities'],
-    subtitle: 'To Your Personalized Profile',
+    title: ['View Your', 'Weekly Progress'],
+    subtitle: 'An interactive tracking calendar',
     backgroundColor: 'var(--color-sage)',
     image: Image3,
     imageClass: 'app-tutorial-page__image3'
@@ -124,12 +125,12 @@ function done() {
     width: 100%;
     position: absolute;
     left: 0;
-    bottom: to-rpx(67);
+    bottom: 8.25%;
     z-index: 1;
   }
 
   :deep(.uni-swiper-dots-horizontal) {
-    bottom: to-rpx(213);
+    bottom: 26%;
   }
 
   &__swiper {
@@ -139,7 +140,7 @@ function done() {
   &__item {
     display: flex;
     flex-direction: column;
-    padding-top: calc(var(--status-bar-height) + to-rpx(65 + 30));
+    padding-top: calc(var(--status-bar-height) + 16%);
     height: 100%;
 
     &--top {
@@ -147,9 +148,12 @@ function done() {
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: to-rpx(15);
       text-align: center;
       color: var(--color-snow);
+
+      > *:not(:first-child) {
+        margin-top: 1.84%;
+      }
     }
 
     &--title {
@@ -165,24 +169,21 @@ function done() {
   }
 
   &__image {
-    padding-top: to-rpx(76);
+    padding-top: 12.35%;
   }
 
   &__image1 {
     width: to-rpx(457);
-    height: to-rpx(199);
     padding-left: to-rpx(35);
   }
 
   &__image2 {
     align-self: center;
     width: to-rpx(240);
-    height: to-rpx(240);
   }
 
   &__image3 {
     width: to-rpx(347);
-    height: to-rpx(207);
     padding-left: to-rpx(43);
   }
 }

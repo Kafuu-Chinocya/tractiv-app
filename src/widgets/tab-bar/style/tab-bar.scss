@@ -9,7 +9,6 @@
 
   &__icon-wrapper {
     display: inline-flex;
-    gap: to-rpx(18);
     color: #c3cbce;
   }
 
@@ -17,6 +16,10 @@
     display: inline-flex;
     flex-direction: column;
     align-items: center;
+
+    &:not(:first-child) {
+      margin-left: to-rpx(18);
+    }
 
     &:active,
     &--active {

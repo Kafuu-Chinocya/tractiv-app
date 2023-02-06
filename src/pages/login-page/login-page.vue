@@ -1,11 +1,13 @@
 <template>
   <view class="login-page">
     <view class="login-page__top">
-      <image class="login-page__logo" :src="Logo"></image>
+      <image class="login-page__logo" :src="Logo" mode="aspectFit"></image>
       <view class="login-page__content">
-        <text class="primary-heading">Create a New Account</text>
+        <text class="primary-heading">Create a</text>
+        <text class="primary-heading">New Account</text>
         <view class="login-page__content--split"></view>
-        <text class="sub-title"> For the best experience with Tractiv </text>
+        <text class="sub-title">For the best experience</text>
+        <text class="sub-title">with Tractiv</text>
       </view>
     </view>
     <view class="login-page__bottom">
@@ -46,6 +48,7 @@ const computedComponent = computed(
   display: flex;
   flex-direction: column;
   height: 100%;
+  padding-top: var(--status-bar-height);
   background-color: var(--color-drab);
 
   &__top {
@@ -53,17 +56,18 @@ const computedComponent = computed(
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-top: 5.9%;
   }
 
   &__logo {
-    width: to-rpx(118);
     height: to-rpx(78);
     align-self: center;
   }
 
   &__content {
-    width: to-rpx(200);
-    padding: to-rpx(76) 0 to-rpx(120) to-rpx(70);
+    display: flex;
+    flex-direction: column;
+    padding: 16% 0 16.5% to-rpx(70);
     color: var(--color-snow);
 
     &--split {
@@ -76,7 +80,7 @@ const computedComponent = computed(
   &__bottom {
     display: flex;
     flex-direction: column;
-    height: to-rpx(264);
+    flex: 1;
 
     &--view {
       flex: 1;
@@ -84,7 +88,7 @@ const computedComponent = computed(
   }
 
   &__tab {
-    flex-shrink: none;
+    flex-shrink: 0;
     box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.1);
   }
 }

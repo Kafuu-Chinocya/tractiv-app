@@ -1,16 +1,16 @@
 @use '../function/to-relative-size' as *;
 
 :root {
-  --primary-heading: 60 rpx;
-  --secondary-heading: 48 rpx;
-  --section-header: 36 rpx;
-  --sub-title: 36 rpx;
-  --card-title: 30 rpx;
-  --card-copy-small: 30 rpx;
-  --body-copy-small: 28 rpx;
-  --message-time-stamp: 24 rpx;
-  --button-label: 28 rpx;
-  --card-subtitle: 20 rpx;
+  --primary-heading: #{to-rpx(30)};
+  --secondary-heading: #{to-rpx(24)};
+  --section-header: #{to-rpx(18)};
+  --sub-title: #{to-rpx(18)};
+  --card-title: #{to-rpx(15)};
+  --card-copy-small: #{to-rpx(15)};
+  --body-copy-small: #{to-rpx(14)};
+  --message-time-stamp: #{to-rpx(12)};
+  --button-label: #{to-rpx(14)};
+  --card-subtitle: #{to-rpx(10)};
 
   --tab-bar-height: #{to-rpx(70)};
 

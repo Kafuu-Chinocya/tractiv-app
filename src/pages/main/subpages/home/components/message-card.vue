@@ -117,11 +117,11 @@ const actionIcons = [
     &-item {
       display: inline-flex;
       align-items: center;
-      gap: 4px;
     }
   }
 
   &__action-icon {
+    margin-right: 4px;
     font-size: to-rpx(16);
     color: var(--color-fossil);
   }

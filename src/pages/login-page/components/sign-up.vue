@@ -19,11 +19,14 @@ import CapsuleButton from '@/components/capsule-button'
   display: flex;
   justify-content: center;
   flex-direction: column;
-  gap: to-rpx(25);
   padding: 0 to-rpx(30);
 
   &__button {
     width: 100%;
+
+    &:not(:first-child) {
+      margin-top: to-rpx(25);
+    }
   }
 }
 </style>

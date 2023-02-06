@@ -118,7 +118,6 @@ async function submit() {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  gap: to-rpx(25);
   padding: 0 to-rpx(30);
 
   &__input {

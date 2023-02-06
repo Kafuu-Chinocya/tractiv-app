@@ -27,7 +27,6 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: to-rpx(60);
     width: 100%;
     text-align: center;
 
@@ -36,6 +35,10 @@
       font-weight: 700;
       color: #222326;
       transition: color 0.2s;
+
+      &:not(:first-child) {
+        margin-top: to-rpx(60);
+      }
 
       &-active,
       &:active {

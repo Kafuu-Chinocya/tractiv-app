@@ -1,7 +1,12 @@
 <template>
   <scroll-view scroll-y @scrolltolower="getRemoteData">
     <view class="friends">
-      <MessageCard v-for="(item, idx) of list" :key="idx" :data="item" />
+      <MessageCard
+        class="friends__message-card"
+        v-for="(item, idx) of list"
+        :key="idx"
+        :data="item"
+      />
       <uni-load-more status="loading"></uni-load-more>
     </view>
   </scroll-view>
@@ -23,7 +28,7 @@ function getRemoteData() {
     url: 'https://randomuser.me/api/?results=20&inc=name,gender,email,nat,picture&noinfo',
     success(res) {
       const result = res.data as anyObj
-      console.log(result)
+      
       list.push(
         ...result.results.map(({ name, picture }: anyObj) => {
           const now = new Date()
@@ -54,7 +59,10 @@ getRemoteData()
 .friends {
   display: flex;
   flex-direction: column;
-  gap: to-rpx(20);
   padding: to-rpx(18);
+
+  &__message-card:not(:first-child) {
+    margin-top: to-rpx(20);
+  }
 }
 </style>

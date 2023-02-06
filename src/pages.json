@@ -30,7 +30,7 @@
     "navigationBarTitleText": "uni-app",
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8",
-    "pageOrientation": "landscape"
+    "pageOrientation": "portrait"
   },
   "easycom": {
     "autoscan": true,
