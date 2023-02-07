@@ -38,7 +38,7 @@
   &__wrapper-image {
     border: to-rpx(10) solid var(--color-snow);
     border-radius: 50%;
-    margin-bottom: to-rpx(26);
+    margin-top: -#{to-rpx(26)};
   }
 
   &__image {

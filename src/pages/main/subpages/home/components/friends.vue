@@ -28,7 +28,7 @@ function getRemoteData() {
     url: 'https://randomuser.me/api/?results=20&inc=name,gender,email,nat,picture&noinfo',
     success(res) {
       const result = res.data as anyObj
-      
+
       list.push(
         ...result.results.map(({ name, picture }: anyObj) => {
           const now = new Date()
