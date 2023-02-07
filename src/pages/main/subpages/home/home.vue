@@ -10,9 +10,7 @@
       inactive-background-color="#E4E7E8"
     />
 
-    <keep-alive>
-      <component class="home__content" :is="computedComponent.component" />
-    </keep-alive>
+    <component class="home__content" :is="computedComponent.component" />
   </view>
 </template>
 
@@ -25,7 +23,7 @@ import Friends from './components/friends.vue'
 
 const tabs = ['You', 'Friends']
 const tabComponents = [You, Friends]
-const tabIndex = ref(0)
+const tabIndex = ref(1)
 const computedComponent = computed(() => ({
   component: tabComponents[tabIndex.value]
 }))
