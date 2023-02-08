@@ -1,5 +1,12 @@
 <template>
-  <scroll-view scroll-y @scrolltolower="getRemoteData">
+  <scroll-view
+    id="friends-content"
+    scroll-y
+    scroll-with-animation
+    :scroll-top="scrollTop"
+    @scroll="scrollHandler"
+    @scrolltolower="getRemoteData"
+  >
     <view class="friends">
       <MessageCard
         class="friends__message-card"
@@ -13,21 +20,24 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive } from 'vue'
+import { reactive, ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
+
+import { getRandomUserInfo } from '@/apis'
 
 import MessageCard from './message-card.vue'
 
+const oldScrollTop = ref(0)
+const scrollTop = ref(0)
 const list = reactive<anyObj>([])
 
+function scrollHandler(e: anyObj) {
+  oldScrollTop.value = e.detail.scrollTop
+}
+
 function getRemoteData() {
-  uni.showLoading({
-    title: 'Loading ...',
-    mask: true
-  })
-  uni.request({
-    url: 'https://randomuser.me/api/?results=20&inc=name,gender,email,nat,picture&noinfo',
-    success(res) {
-      const result = res.data as anyObj
+  getRandomUserInfo({
+    success(response) {
+      const result = response.data as anyObj
 
       list.push(
         ...result.results.map(({ name, picture }: anyObj) => {
@@ -45,14 +55,25 @@ function getRemoteData() {
           }
         })
       )
-    },
-    complete() {
-      uni.hideLoading()
     }
   })
 }
 
 getRemoteData()
+
+onMounted(() => {
+  uni.$on('click-same-tab', (name) => {
+    scrollTop.value = oldScrollTop.value
+
+    nextTick(() => {
+      scrollTop.value = 0
+    })
+  })
+})
+
+onBeforeUnmount(() => {
+  uni.$off('click-same-tab')
+})
 </script>
 
 <style lang="scss" scoped>

@@ -1,5 +1,6 @@
 import { URL } from '@/constants'
 import userUser from '@/stores/user'
+import { excludeKeys } from '@/utils/shared'
 
 interface Options {
   // 取消重复请求
@@ -17,11 +18,14 @@ interface Options {
 }
 
 interface LoadingInstance {
-  target: (anyObj & { close: anyFn }) | null
+  target: { show: anyFn; close: anyFn } | null
   count: number
 }
 
-type requestParams = UniNamespace.RequestOptions & { cancelToken?: string }
+interface RequestParams extends UniNamespace.RequestOptions {
+  cancelToken?: string
+}
+
 type requestTask = UniNamespace.RequestTask
 
 const pendingMap = new Map<string, requestTask>()
@@ -37,16 +41,33 @@ const defaultOptions: Options = {
   showCodeMessage: false,
   showSuccessMessage: false
 }
+const defaultLoadingOptions = {
+  title: 'Loading ...',
+  mask: true
+}
+const loadingTarget = {
+  show(options: UniApp.ShowLoadingOptions) {
+    uni.showLoading(options)
+  },
+  close() {
+    uni.hideLoading()
+  }
+} as const
+
 let loadingTimer: number
-const _auth = userUser()
+let _auth: ReturnType<typeof userUser>
 
-function getPendingKey(config: anyObj) {
-  const { url, method, params, data } = config
-
-  return [url, method, JSON.stringify(params), JSON.stringify(data)].join('&')
+function ensureAuth() {
+  return _auth || (_auth = userUser())
 }
 
-const addPending: (config: requestParams, requestTask: requestTask) => void = (
+function getPendingKey(config: RequestParams) {
+  const { url, method, data } = config
+
+  return [url, method, JSON.stringify(data)].join('&')
+}
+
+const addPending: (config: RequestParams, requestTask: requestTask) => void = (
   config,
   requestTask
 ) => {
@@ -60,7 +81,7 @@ const addPending: (config: requestParams, requestTask: requestTask) => void = (
   }
 }
 
-const removePending: (config: requestParams) => void = (config) => {
+const removePending: (config: RequestParams) => void = (config) => {
   const key = getPendingKey(config)
   const task = pendingMap.get(key)
 
@@ -82,16 +103,68 @@ function closeLoading(options: Options) {
   }, 300)
 }
 
-function createRequest(
-  config: requestParams,
+function httpErrorStatusHandle(error: any) {}
+
+const defaultHandler = () => undefined
+
+export function createRequest(
+  config: RequestParams,
   options: Options = {},
-  loadingOptions: anyObj = {}
+  loadingOptions: UniApp.ShowLoadingOptions = {}
 ) {
-  const token = _auth.userInfo?.token
+  const token = ensureAuth().userInfo?.token
   const mergedOptions = Object.assign({}, defaultOptions, options)
+  const normalConfig = excludeKeys(config, ['success', 'fail', 'complete'])
+  let {
+    success = defaultHandler,
+    fail = defaultHandler,
+    complete = defaultHandler
+  } = config
 
   removePending(config)
 
-  const requestTask = uni.request(config)
-  options.cancelDuplicateRequest && addPending(config, requestTask)
+  // 创建 loading
+  if (mergedOptions.loading) {
+    loadingInstance.count++
+
+    if (loadingInstance.count === 1) {
+      if (loadingInstance.target !== null) {
+        clearTimeout(loadingTimer)
+      } else {
+        loadingInstance.target = loadingTarget
+        loadingInstance.target.show(
+          Object.assign({}, defaultLoadingOptions, loadingOptions)
+        )
+      }
+    }
+  }
+
+  // 附带 token
+  if (token) {
+    if (!normalConfig.header) {
+      normalConfig.header = {}
+    }
+
+    normalConfig.header.Authorization = token
+  }
+
+  const requestTask = uni.request({
+    ...normalConfig,
+    success(v) {
+      success(v)
+    },
+    fail(error) {
+      mergedOptions.showErrorMessage && httpErrorStatusHandle(error)
+      fail(error)
+    },
+    complete(v) {
+      removePending(config)
+      mergedOptions.loading && closeLoading(mergedOptions)
+      complete(v)
+    }
+  })
+
+  mergedOptions.cancelDuplicateRequest && addPending(config, requestTask)
+
+  return requestTask
 }

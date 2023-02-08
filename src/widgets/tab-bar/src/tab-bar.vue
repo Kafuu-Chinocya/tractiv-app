@@ -74,6 +74,10 @@ const iconList = [
 ]
 
 function itemClickHandler(name: string) {
-  currentPageName.value = name
+  if (currentPageName.value === name) {
+    uni.$emit('click-same-tab', { name })
+  } else {
+    currentPageName.value = name
+  }
 }
 </script>
