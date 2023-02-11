@@ -20,15 +20,17 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
+import { reactive, ref, unref, onMounted, onBeforeUnmount, nextTick } from 'vue'
 
 import { getRandomUserInfo } from '@/apis'
+import { getStorageSync, setStorageSync } from '@/utils/storage'
+import { STORAGE_KEY } from '@/constants'
 
 import MessageCard from './message-card.vue'
 
 const oldScrollTop = ref(0)
 const scrollTop = ref(0)
-const list = reactive<anyObj>([])
+const list = reactive<anyObj[]>(getStorageSync(STORAGE_KEY.MAIN_FRIENDS) ?? [])
 
 function scrollHandler(e: anyObj) {
   oldScrollTop.value = e.detail.scrollTop
@@ -59,19 +61,20 @@ function getRemoteData() {
   })
 }
 
-getRemoteData()
+if (unref(list).length === 0) {
+  getRemoteData()
+}
 
-onMounted(() => {
-  uni.$on('click-same-tab', (name) => {
-    scrollTop.value = oldScrollTop.value
+uni.$on('click-same-tab', () => {
+  scrollTop.value = oldScrollTop.value
 
-    nextTick(() => {
-      scrollTop.value = 0
-    })
+  nextTick(() => {
+    scrollTop.value = 0
   })
 })
 
 onBeforeUnmount(() => {
+  setStorageSync(STORAGE_KEY.MAIN_FRIENDS, unref(list))
   uni.$off('click-same-tab')
 })
 </script>

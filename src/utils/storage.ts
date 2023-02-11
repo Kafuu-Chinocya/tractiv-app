@@ -1,7 +1,27 @@
 import { isEmptyString } from '@/utils/shared'
 
 export function getStorageSync<T = any>(key: string): null | T {
-  const val = uni.getStorageSync(key)
+  let result = null
 
-  return isEmptyString(val) ? null : (val as T)
+  try {
+    const val = uni.getStorageSync(key)
+    result = isEmptyString(val) ? null : (val as T)
+  } catch (e) {
+    console.error(e)
+  }
+
+  return result
+}
+
+export function setStorageSync(key: string, data: any) {
+  let result = true
+
+  try {
+    uni.setStorageSync(key, data)
+  } catch (e) {
+    result = false
+    console.error(e)
+  }
+
+  return result
 }

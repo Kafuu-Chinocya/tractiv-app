@@ -21,7 +21,7 @@
     transition: 0.3s 0.1s border-color;
 
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       left: 100%;
       top: 0;
@@ -31,14 +31,14 @@
       transition: 0.2s left linear, 0.2s width linear;
     }
 
-    &:hover::before {
+    &:active::before {
       width: 100%;
       left: 0;
       border-color: var(--color-rust);
       transition-delay: 0.1s;
     }
 
-    &:hover ~ &::before {
+    &:active ~ &::before {
       left: 0;
     }
 
@@ -46,6 +46,13 @@
       border-color: var(--color-rust);
       background-color: var(--switch-tab-active-background-color);
       color: var(--switch-tab-active-text-color);
+
+      &::before {
+        width: 100%;
+        left: 0;
+        border-color: var(--color-rust);
+        transition-delay: 0.1s;
+      }
 
       & ~ &::before {
         left: 0;

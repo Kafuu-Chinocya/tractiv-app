@@ -10,7 +10,16 @@
       inactive-background-color="#E4E7E8"
     />
 
-    <component class="home__content" :is="computedComponent.component" />
+    <swiper
+      class="home__content"
+      :current="tabIndex"
+      @change="swiperChangeHandler"
+    >
+      <swiper-item v-for="(component, idx) of tabComponents" :key="tabs[idx]">
+        <component class="home__content-wrapper" :is="component" />
+      </swiper-item>
+    </swiper>
+    <!-- <component class="home__content" :is="computedComponent.component" /> -->
   </view>
 </template>
 
@@ -24,9 +33,13 @@ import Friends from './components/friends.vue'
 const tabs = ['You', 'Friends']
 const tabComponents = [You, Friends]
 const tabIndex = ref(1)
-const computedComponent = computed(() => ({
+/* const computedComponent = computed(() => ({
   component: tabComponents[tabIndex.value]
-}))
+})) */
+
+function swiperChangeHandler(e: UniEvent) {
+  tabIndex.value = e.detail.current
+}
 </script>
 
 <style lang="scss" scoped>
@@ -39,6 +52,10 @@ const computedComponent = computed(() => ({
     flex: 1;
     overflow: hidden;
     background-color: var(--color-ice);
+
+    &-wrapper {
+      height: 100%;
+    }
   }
 }
 </style>
