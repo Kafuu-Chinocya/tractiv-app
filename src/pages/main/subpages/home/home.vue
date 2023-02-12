@@ -13,18 +13,18 @@
     <swiper
       class="home__content"
       :current="tabIndex"
+      skip-hidden-item-layout
       @change="swiperChangeHandler"
     >
       <swiper-item v-for="(component, idx) of tabComponents" :key="tabs[idx]">
         <component class="home__content-wrapper" :is="component" />
       </swiper-item>
     </swiper>
-    <!-- <component class="home__content" :is="computedComponent.component" /> -->
   </view>
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 
 import SwitchTab from '@/components/switch-tab'
 import You from './components/you.vue'
@@ -33,9 +33,6 @@ import Friends from './components/friends.vue'
 const tabs = ['You', 'Friends']
 const tabComponents = [You, Friends]
 const tabIndex = ref(1)
-/* const computedComponent = computed(() => ({
-  component: tabComponents[tabIndex.value]
-})) */
 
 function swiperChangeHandler(e: UniEvent) {
   tabIndex.value = e.detail.current

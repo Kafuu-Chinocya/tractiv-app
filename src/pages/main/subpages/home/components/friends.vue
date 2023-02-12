@@ -65,17 +65,19 @@ if (unref(list).length === 0) {
   getRemoteData()
 }
 
-uni.$on('click-same-tab', () => {
+function clickSameTabHandler() {
   scrollTop.value = oldScrollTop.value
 
   nextTick(() => {
     scrollTop.value = 0
   })
-})
+}
+
+uni.$on('click-same-tab', clickSameTabHandler)
 
 onBeforeUnmount(() => {
   setStorageSync(STORAGE_KEY.MAIN_FRIENDS, unref(list))
-  uni.$off('click-same-tab')
+  uni.$off('click-same-tab', clickSameTabHandler)
 })
 </script>
 
