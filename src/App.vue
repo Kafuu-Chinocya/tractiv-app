@@ -39,7 +39,9 @@ routerMethods.forEach((name) => {
 })
 
 onLaunch(() => {
+  // #ifdef APP-PLUS
   plus.screen.lockOrientation('portrait-primary')
+  // #endif
 
   if (user.userInfo) {
     uni.reLaunch({

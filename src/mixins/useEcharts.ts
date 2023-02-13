@@ -5,8 +5,7 @@ export default (echartsOptions: { [id: string]: EChartsOption }) => {
   return {
     data() {
       return {
-        echartsInstances: {},
-        sads: { a: 1, b: 2 }
+        echartsInstances: {}
       }
     },
     methods: {

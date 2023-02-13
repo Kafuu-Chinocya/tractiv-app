@@ -5,6 +5,8 @@
       :prop="state"
       :change:prop="chart.propChangeHandler"
     ></view>
+
+    <view @click="add">click</view>
   </view>
 </template>
 
@@ -15,12 +17,8 @@ export default {
   setup() {
     const state = ref({})
 
-    const log = (v) => {
-      console.log(v)
-    }
-
-    onMounted(() => {
-      state.value = JSON.stringify({
+    const add = () => {
+      state.value = {
         legend: {
           show: true,
           data: []
@@ -88,10 +86,12 @@ export default {
           }
         ],
         color: ['#83bff6']
-      })
-    })
+      }
+    }
 
-    return { state, log }
+    onMounted(() => {})
+
+    return { state, add }
   }
 }
 </script>
@@ -114,26 +114,13 @@ export default {
     }
   },
   methods: {
-    initEcharts(echarts, id, option) {
-      const element = document.querySelector(`#${ id }`)
-
-      if (!element) return
-
-      const instance = echarts.init(element)
-      instance.setOption(option)
-      window.addEventListener('resize', instance.resize)
-
-      return instance
-    },
     propChangeHandler(newValue, oldValue, ownerInstance, instance) {
-     // this.echartsInstances['chart']?.setOption(newValue)
-      this.options = newValue
+     this.options = newValue
+     this.echartsInstances['chart']?.setOption(this.options)
     }
   },
   mounted() {
-    const instance = this.initEcharts(this.echarts, 'chart', {})
-    instance?.resize()
-    instance?.setOption(JSON.parse(this.options))
+    this.echartsInstances['chart']?.setOption(this.options)
   }
 }
 </script>
