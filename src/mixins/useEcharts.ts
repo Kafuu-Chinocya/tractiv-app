@@ -1,11 +1,12 @@
 // @ts-nocheck
+
 import { init, type EChartsOption } from 'echarts'
 
 export default (echartsOptions: { [id: string]: EChartsOption }) => {
   return {
     data() {
       return {
-        echartsInstances: {}
+        echartsInstances: {} as { [id: string]: ReturnType<typeof init> }
       }
     },
     methods: {
@@ -18,15 +19,13 @@ export default (echartsOptions: { [id: string]: EChartsOption }) => {
 
           const instance = init(element)
           instance.setOption(option)
-          window.addEventListener('resize', instance.resize as anyFn)
           this.echartsInstances[id] = instance
-          // this.$nextTick(() => instance.resize())
+          this.$nextTick(() => instance.resize())
         })
       },
       // 卸载所有图表
       uninstallEcharts() {
         Object.keys(echartsOptions).forEach((id) => {
-          window.removeEventListener('resize', this.echartsInstances[id].resize)
           this.echartsInstances[id].dispose()
         })
       }

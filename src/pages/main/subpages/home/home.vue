@@ -10,16 +10,18 @@
       inactive-background-color="#E4E7E8"
     />
 
-    <swiper
+    <!--<swiper
       class="home__content"
       :current="tabIndex"
       skip-hidden-item-layout
       @change="swiperChangeHandler"
     >
-      <swiper-item v-for="(component, idx) of tabComponents" :key="tabs[idx]">
-        <component class="home__content-wrapper" :is="component" />
-      </swiper-item>
-    </swiper>
+      <swiper-item v-for="(component, idx) of tabComponents" :key="tabs[idx]">-->
+    <scroll-view class="home__content" scroll-y>
+      <component class="home__content-wrapper" :is="component" />
+    </scroll-view>
+    <!--</swiper-item>
+  </swiper>-->
   </view>
 </template>
 
